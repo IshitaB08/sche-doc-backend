@@ -7,7 +7,6 @@ const mongoose = require("mongoose");
 const cors = require('cors')
 // routers users
 const authRoutes = require('./routes/auth');
-const adminRoutes = require('./routes/admin/auth');
 const appointment = require('./routes/appointment')
 
 const path = require('path')
@@ -37,7 +36,7 @@ app.use( express.json());
 
 app.use('/api', authRoutes);
 app.use('/api',appointment)
-app.use('/api', adminRoutes);
+
 
 
 
