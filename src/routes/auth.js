@@ -2,7 +2,6 @@ const { Router } = require("express");
 const express = require("express");
 const { isRequestvalidated } = require("../common-middleware");
 const { signup, signin, requireSignin, getUser, getUserData } = require("../controller/auth");
-const user = require("../models/user");
 
 const { Validatesignuprequest,  Validatesigninrequest } = require("../validators/auth");
 const router = express.Router();
