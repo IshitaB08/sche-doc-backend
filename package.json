@@ -2,12 +2,15 @@
   "name": "doctor-client",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "node  ./src/index.server.js"
   },
   "author": "",
   "license": "ISC",
+  
+  "engines": {
+    "node": "10.x"
+  },
   "dependencies": {
     "bcrypt": "^5.0.1",
     "bcryptjs": "^2.4.3",
@@ -20,7 +23,4 @@
     "jwt-decode": "^3.1.2",
     "mongoose": "^5.13.2"
   },
-  "devDependencies": {
-    "nodemon": "^2.0.9"
-  }
 }
