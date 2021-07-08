@@ -36,7 +36,6 @@ exports.signup =(req,res)=>{
       const _user = new User({
         fullname, 
         role,
-       
         email,
         password,
         contactnumber: Math.random()
