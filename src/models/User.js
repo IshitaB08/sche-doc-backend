@@ -27,7 +27,7 @@ default:'user'
         unique:true,
         trim:true,
     },
-    hash_password:{
+    password:{
         type:String,
         required:true,
      },
@@ -44,15 +44,15 @@ default:'user'
 );
 
 
-userschema.virtual('password')
-.set(function(password){
-    this.hash_password = bcrypt.hashSync(password,10);
-});
+// userschema.virtual('password')
+// .set(function(password){
+//     this.hash_password = bcrypt.hashSync(password,10);
+// });
 
-userschema.methods= {
-    authenticate: function(password){
-        return bcrypt.compareSync(password, this.hash_password);
-    }
-}
+// userschema.methods= {
+//     authenticate: function(password){
+//         return bcrypt.compareSync(password, this.hash_password);
+//     }
+// }
 
 module.exports = mongoose.model('User', userschema)
