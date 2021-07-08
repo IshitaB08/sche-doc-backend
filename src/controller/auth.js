@@ -48,8 +48,11 @@ exports.signup =(req,res)=>{
   });
   }
    if(data){
+    const token= jwt.sign({ _id : data._id, role:data.role}, process.env.JWT_SECRET, {expiresIn: '1h'});
        return res.status(201).json({
-           massage: "User Created Successfully...!"
+           massage: "User Created Successfully...!",
+           data:data,
+           token:token
        })
    }
   });
