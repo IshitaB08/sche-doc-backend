@@ -15,6 +15,13 @@ exports.getUser=(req,res)=>{
         })
     })
 }
+exports.getAdmin=(req,res)=>{
+    User.find({role:'admin'}).exec((error, user)=>{
+        if(user) return res.status(200).json({
+            data:user
+        })
+    })
+}
 
 exports.signup =(req,res)=>{
 
