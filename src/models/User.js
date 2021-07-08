@@ -37,6 +37,9 @@ default:'user'
     contactnumber:{
         type:String,
         required:true,
+    },
+    available:{
+        type:Boolean
     }
 }, {
     timestamps:true,

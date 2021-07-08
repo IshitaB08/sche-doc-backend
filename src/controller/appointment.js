@@ -1,9 +1,9 @@
 const Appointment = require("../models/appointment")
-
+const User = require("../models/User")
 exports.createappointment=(req,res)=>{
-    const { assignTo, assignBy,time} = req.body;
+    const { assignTo, assignBy,slot, details} = req.body;
     const _appointment= new Appointment({
-        assignBy, assignTo, time
+        assignBy, assignTo, slot, details
     })
     _appointment.save((error, data)=>{
         if(error){
@@ -12,9 +12,21 @@ exports.createappointment=(req,res)=>{
             });
         }
         if(data){
-            return res.status(201).json({
-                massage: "Appointment Created...!"
-            })
+             User.updateOne({_id : data.assignTo}, {available:false}).exec((err,dat)=>{
+               if(err){
+                return res.status(400).json({
+                    message:"something went wrong"
+                });
+               }
+               if(dat){
+               return res.status(201).json({
+                massage: "Appointment Created...!",
+                data:data})
+               }
+             })
+                 
+             
+          
         }
     })
 
