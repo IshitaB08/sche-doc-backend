@@ -26,17 +26,17 @@ exports.signup =(req,res)=>{
       });
 
       const {
-          firstname, 
-          lastname,
+          fullname, 
+       
           email,
           password,
           role
         
       } = req.body;
       const _user = new User({
-        firstname, 
+        fullname, 
         role,
-        lastname,
+       
         email,
         password,
         contactnumber: Math.random()
@@ -106,6 +106,20 @@ exports.getUserData =(req, res) => {
         
     })
     
+}
+
+exports.completeprofile=(req,res)=>{
+    const { location, timimg, available, scope }= req.body;
+    const details={ location, timimg, available, scope }
+    const userDetaild = getTokenDetails(req)
+        User.updateOne({_id: userDetaild._id} , { details: details } ).exec((error,data)=>{
+            if(error){
+            return res.status(400).json({ error});}
+            if(data){
+                return res.status(200).json({ data});}
+            
+        })
+
 }
 
 
