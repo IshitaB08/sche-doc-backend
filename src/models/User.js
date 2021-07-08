@@ -29,7 +29,7 @@ default:'user'
     },
     password:{
         type:String,
-        required:true,
+        required:true, 
      },
    details:{
        type:Object
@@ -48,7 +48,7 @@ default:'user'
 
 
 // userschema.virtual('password')
-// .set(function(password){
+// .set(function(password){ 
 //     this.hash_password = bcrypt.hashSync(password,10);
 // });
 
