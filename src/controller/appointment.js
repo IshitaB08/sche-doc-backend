@@ -44,7 +44,8 @@ exports.getappointment=(req,res)=>{
         if(user) return res.status(200).json({
             data:user
         })
-    })
+  
+    })   
 
 }
 exports.getmyappointment=(req,res)=>{
