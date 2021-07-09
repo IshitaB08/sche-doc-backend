@@ -62,6 +62,20 @@ exports.getmyappointment=(req,res)=>{
    })
 
 }
+exports.getmyappointmentuser=(req,res)=>{
+    var userDetails = getTokenDetails(req)
+    Appointment.find({assignBy:userDetails._id}).exec((error, data)=>{
+       if(data) return res.status(200).json({
+           data:data
+       })
+       if(error) {
+           return res.status(400).json({
+               error:error
+           })
+       }
+   })
+
+}
 exports.finishappointment=(req,res)=>{
     const id = req.params.id;
     Appointment.updateOne({_id:id}, { done:true }).exec((error,data)=>{
