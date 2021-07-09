@@ -8,6 +8,6 @@ router.post("/appointment/add", createappointment )
 router.get("/appointment",  getappointment )
 router.get("/myappointment",  getmyappointment )
 router.get("/myappointment/user",  getmyappointmentuser )
-router.get("/appointment/{{id}}/finish",  finishappointment )
+router.get("/appointment/:id/finish",  finishappointment )
 
 module.exports = router;
