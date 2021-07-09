@@ -16,7 +16,7 @@ exports.getUser=(req,res)=>{
     })
 }
 exports.getUserbyid=(req,res)=>{
-    User.findOne({_id:req.params.id}).exec((error, user)=>{
+    User.findOne({_id:req.headers.id}).exec((error, user)=>{
         if(user) return res.status(200).json({
             data:user
         })
