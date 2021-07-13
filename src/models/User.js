@@ -34,6 +34,15 @@ default:'user'
    details:{
        type:Object
    },
+   allslots:{
+           type:Object
+   },
+   location:{
+       type:String
+   },
+   scope:{
+       type:String
+   },
     contactnumber:{
         type:String,
         required:true,

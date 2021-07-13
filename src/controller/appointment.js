@@ -9,9 +9,9 @@ getTokenDetails = (req) => {
 
 
 exports.createappointment=(req,res)=>{
-    const { assignTo, assignBy,slot, details} = req.body;
+    const { assignTo, assignBy,slot,getslots, details} = req.body;
     const _appointment= new Appointment({
-        assignBy, assignTo, slot, details
+        assignBy, assignTo, slot, details, getslots
     })
     _appointment.save((error, data)=>{
         if(error){
@@ -20,7 +20,7 @@ exports.createappointment=(req,res)=>{
             });
         }
         if(data){
-             User.updateOne({_id : data.assignTo}, {available:false}).exec((err,dat)=>{
+             User.updateOne({_id : data.assignTo}, {details.slots: getslots }).exec((err,dat)=>{
                if(err){
                 return res.status(400).json({
                     message:"something went wrong"

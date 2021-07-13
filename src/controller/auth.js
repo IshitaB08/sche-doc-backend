@@ -133,7 +133,7 @@ exports.completeprofile=(req,res)=>{
     const { location, slots, scope }= req.body;
     const details={ location, slots, scope }
     const userDetaild = getTokenDetails(req)
-        User.updateOne({_id: userDetaild._id} , { details: details } ).exec((error,data)=>{
+        User.updateOne({_id: userDetaild._id} , { location:location, allslots:slots, scope:scope } ).exec((error,data)=>{
             if(error){
             return res.status(400).json({ error});}
             if(data){
