@@ -11,7 +11,7 @@ getTokenDetails = (req) => {
 exports.createappointment=(req,res)=>{
     const { assignTo, assignBy,slot,getslots, details} = req.body;
     const _appointment= new Appointment({
-        assignBy, assignTo, slot, details, getslots
+        assignBy, assignTo, slot, details
     })
     _appointment.save((error, data)=>{
         if(error){
