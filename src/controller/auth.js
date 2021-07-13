@@ -130,8 +130,8 @@ exports.getUserData =(req, res) => {
 }
 
 exports.completeprofile=(req,res)=>{
-    const { location, timimg, available, scope }= req.body;
-    const details={ location, timimg, available, scope }
+    const { location, slots, scope }= req.body;
+    const details={ location, slots, scope }
     const userDetaild = getTokenDetails(req)
         User.updateOne({_id: userDetaild._id} , { details: details } ).exec((error,data)=>{
             if(error){
