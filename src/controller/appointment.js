@@ -20,7 +20,7 @@ exports.createappointment=(req,res)=>{
             });
         }
         if(data){
-             User.updateOne({_id : data.assignTo}, {details.slots: getslots }).exec((err,dat)=>{
+             User.updateOne({_id : data.assignTo}, {allslots: getslots }).exec((err,dat)=>{
                if(err){
                 return res.status(400).json({
                     message:"something went wrong"
