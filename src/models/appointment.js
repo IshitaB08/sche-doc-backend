@@ -15,8 +15,8 @@ const appointMentSchema = new mongoose.Schema({
         type:String
     },
     done:{
-        type:Boolean,
-        default:false
+        type:String,
+        default:'false'
     }
 })
 module.exports = mongoose.model("Appointment", appointMentSchema)
