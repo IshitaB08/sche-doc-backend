@@ -51,7 +51,7 @@ exports.pendingappointment=(req,res)=>{
                if(dat){
                return res.status(201).json({
                 massage: "Appointment Created...!",
-                data:data})
+                data:dat})
                }
             })}
              
