@@ -39,6 +39,32 @@ exports.createappointment=(req,res)=>{
     })
 
 }
+exports.pendingappointment=(req,res)=>{
+    const { assignTo, assignBy,slot,getslots, details} = req.body;
+   
+        if(data){
+             User.updateOne({_id : data.assignTo}, {allslots: getslots }).exec((err,dat)=>{
+               if(err){
+                return res.status(400).json({
+                    message:"something went wrong"
+                });
+               }
+               if(dat){
+               return res.status(201).json({
+                massage: "Appointment Created...!",
+                data:data})
+               }
+             })
+                 
+             
+          
+        }
+    })
+
+}
+
+
+
 exports.getappointment=(req,res)=>{
      Appointment.find().exec((error, user)=>{
         if(user) return res.status(200).json({
