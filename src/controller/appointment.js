@@ -16,7 +16,7 @@ exports.createappointment=(req,res)=>{
     _appointment.save((error, data)=>{
         if(error){
             return res.status(400).json({
-                message:"something went wrong"
+                message:"something went wrong in creating appointment.."
             });
             
         }
@@ -24,7 +24,7 @@ exports.createappointment=(req,res)=>{
              User.updateOne({_id : data.assignTo}, {allslots: getslots }).exec((err,dat)=>{
                if(err){
                 return res.status(400).json({
-                    message:"something went wrong"
+                    message:err
                 });
                }
                if(dat){

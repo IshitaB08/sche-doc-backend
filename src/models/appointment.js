@@ -9,7 +9,7 @@ const appointMentSchema = new mongoose.Schema({
           type:Schema.Types.ObjectId, ref :'User'
     },
     slot:{
-        type:String
+        type:Object
     },
     details:{
         type:String
