@@ -130,10 +130,24 @@ exports.getUserData =(req, res) => {
 }
 
 exports.completeprofile=(req,res)=>{
-    const { location, slots, scope }= req.body;
-    const details={ location, slots, scope }
+    const { location, scope }= req.body;
+ 
     const userDetaild = getTokenDetails(req)
-        User.updateOne({_id: userDetaild._id} , { location:location, allslots:slots, scope:scope } ).exec((error,data)=>{
+        User.updateOne({_id: userDetaild._id} , { location:location, scope:scope } ).exec((error,data)=>{
+            if(error){
+            return res.status(400).json({ error});}
+            if(data){
+                return res.status(200).json({ data});}
+            
+        })
+
+}
+exports.completeprofileClient=(req,res)=>{
+    const { age, gender, weight, height, allergies, medicalhistory }= req.body;
+    const data={ age, gender, weight,height, allergies, medicalhistory };
+ 
+    const userDetaild = getTokenDetails(req)
+        User.updateOne({_id: userDetaild._id} , { clientDetails : data } ).exec((error,data)=>{
             if(error){
             return res.status(400).json({ error});}
             if(data){

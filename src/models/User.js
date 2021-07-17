@@ -15,6 +15,9 @@ const userschema = new mongoose.Schema({
         max:20,
         trim:true,
     },
+    appointments:[{
+          type:Object
+    }],
     role:{
 type:String,
 enum: ['admin','user'],
@@ -34,9 +37,9 @@ default:'user'
    details:{
        type:Object
    },
-   allslots:{
+   allslots:[{
            type:Object
-   },
+   }],
    location:{
        type:String
    },
@@ -49,6 +52,9 @@ default:'user'
     },
     available:{
         type:Boolean
+    },
+    clientDetails:{
+        type:Object
     }
 }, {
     timestamps:true,
