@@ -56,7 +56,8 @@ exports.pendingappointment=(req,res)=>{
                 massage: "Appointment Created...!",
                 data:dat})
                }
-            })}
+            })
+        }
              
                  
              
@@ -129,15 +130,27 @@ exports.cencelappointment=(req,res)=>{
         }
     })
 }
-exports.cencelappointment=(req,res)=>{
+exports.acceptappointment=(req,res)=>{
     const id = req.params.id;
+    const { assignTo, getslots} = req.body;
     Appointment.updateOne({_id:id}, { done:"accepted" }).exec((error,data)=>{
         if(error) return res.status(400).json({
             data:error
         })
         if(data){
-            return res.status(200).json({
-                data:data
+           
+   
+             User.updateOne({_id : assignTo}, {allslots: getslots }).exec((err,dat)=>{
+               if(err){
+                return res.status(400).json({
+                    message:"something went wrong"
+                });
+               }
+               if(dat){
+               return res.status(201).json({
+                massage: "Appointment Accepted...!",
+                data:dat})
+               }
             })
         }
     })
