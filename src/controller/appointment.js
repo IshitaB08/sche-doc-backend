@@ -140,16 +140,16 @@ exports.acceptappointment=(req,res)=>{
         if(data){
            
    
-             User.updateOne({_id : assignTo}, {allslots: getslots }).exec((err,dat)=>{
+             User.updateOne({_id : assignTo}, {allslots: getslots }).exec((err,data1)=>{
                if(err){
                 return res.status(400).json({
                     message:"something went wrong"
                 });
                }
-               if(dat){
+               if(data1){
                return res.status(201).json({
                 massage: "Appointment Accepted...!",
-                data:dat})
+                data:data1})
                }
             })
         }
