@@ -12,6 +12,6 @@ router.get("/myappointment",  getmyappointment )
 router.get("/myappointment/user",  getmyappointmentuser )
 router.get("/appointment/:id/finish",  finishappointment )
 router.get("/appointment/:id/cencel",  cencelappointment )
-router.get("/appointment/accept", acceptappointment)
+router.get("/appointment/:id/accept", acceptappointment)
 
 module.exports = router;

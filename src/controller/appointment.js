@@ -131,25 +131,25 @@ exports.cencelappointment=(req,res)=>{
     })
 }
 exports.acceptappointment=(req,res)=>{
-   
-    const { assignTo, appointmentid, getslots} = req.body;
-    Appointment.updateOne({_id:appointmentid}, { done:"accepted" }).exec((error,data)=>{
+    const id = req.params.id;
+     const { assignTo, getslots} = req.body;
+    Appointment.updateOne({_id:id}, { done:"accepted" }).exec((error,data)=>{
         if(error) return res.status(400).json({
             data:error
         })
         if(data){
            
    
-             User.updateOne({_id : assignTo}, {allslots: getslots }).exec((err,data1)=>{
+             User.updateOne({_id : assignTo}, {allslots: getslots }).exec((err,dat)=>{
                if(err){
                 return res.status(400).json({
                     message:"something went wrong"
                 });
                }
-               if(data1){
+               if(dat){
                return res.status(201).json({
-                massage: "Appointment Accepted...!",
-                data:data1, data})
+                massage: "Appointment Created...!",
+                data:dat})
                }
             })
         }
