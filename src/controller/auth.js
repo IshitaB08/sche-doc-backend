@@ -180,4 +180,14 @@ exports.completeprofileClient=(req,res)=>{
 
 }
 
+exports.updateslots =(req,res)=>{
+    const {slots,id} = req.body;
+    User.updateOne({_id: id}, {allslots: slots}).exec((error, data)=>{
+          if(error){
+            return res.status(400).json({ error});
+        }
+            if(data){
+                return res.status(200).json({ data});}
+})
+}
 

@@ -1,7 +1,7 @@
 const { Router } = require("express");
 const express = require("express");
 const { isRequestvalidated } = require("../common-middleware");
-const { signup, signin, requireSignin, getUser, getUserData, completeprofile, getAdmin, getUserbyid, completeprofileClient } = require("../controller/auth");
+const { signup, signin, requireSignin, getUser, getUserData, completeprofile, getAdmin, getUserbyid, completeprofileClient, updateslots } = require("../controller/auth");
 
 const { Validatesignuprequest,  Validatesigninrequest } = require("../validators/auth");
 const router = express.Router();
@@ -16,6 +16,7 @@ router.get("/user/admin", getAdmin )
 router.get("/userdata", getUserData)
 router.put("/completeprofile",completeprofile)
 router.put("/completeprofileClient",completeprofileClient)
+router.post("/updateslots", updateslots)
 
 
 // router.post('/profile' , requireSignin, (req, res)=>{
