@@ -12,8 +12,8 @@ exports.createappointment=(req,res)=>{
     const { assignTo, assignBy,slot,getslots, details} = req.body;
     const done = "waiting"
     const _appointment= new Appointment({
-        assignBy, assignTo, slot, details,
-        
+        assignBy, assignTo, slot, details,done
+
     })
     _appointment.save((error, data)=>{
         if(error){
