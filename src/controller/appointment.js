@@ -131,9 +131,9 @@ exports.cencelappointment=(req,res)=>{
     })
 }
 exports.acceptappointment=(req,res)=>{
-    const id = req.params.id;
-    const { assignTo, getslots} = req.body;
-    Appointment.updateOne({_id:id}, { done:"accepted" }).exec((error,data)=>{
+   
+    const { assignTo, appointmentid, getslots} = req.body;
+    Appointment.updateOne({_id:appointmentid}, { done:"accepted" }).exec((error,data)=>{
         if(error) return res.status(400).json({
             data:error
         })
