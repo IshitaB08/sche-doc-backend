@@ -149,7 +149,7 @@ exports.acceptappointment=(req,res)=>{
                if(data1){
                return res.status(201).json({
                 massage: "Appointment Accepted...!",
-                data:data1})
+                data:data1, data})
                }
             })
         }
