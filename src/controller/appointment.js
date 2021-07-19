@@ -10,8 +10,10 @@ getTokenDetails = (req) => {
 
 exports.createappointment=(req,res)=>{
     const { assignTo, assignBy,slot,getslots, details} = req.body;
+    const done = "waiting"
     const _appointment= new Appointment({
-        assignBy, assignTo, slot, details
+        assignBy, assignTo, slot, details,
+        
     })
     _appointment.save((error, data)=>{
         if(error){
@@ -102,7 +104,21 @@ exports.getmyappointmentuser=(req,res)=>{
 }
 exports.finishappointment=(req,res)=>{
     const id = req.params.id;
-    Appointment.updateOne({_id:id}, { done:true }).exec((error,data)=>{
+    Appointment.updateOne({_id:id}, { done:"true" }).exec((error,data)=>{
+        if(error) return res.status(400).json({
+            data:error
+        })
+        if(data){
+            return res.status(200).json({
+                data:data
+            })
+        }
+    })
+}
+
+exports.cencelappointment=(req,res)=>{
+    const id = req.params.id;
+    Appointment.updateOne({_id:id}, { done:"cencel" }).exec((error,data)=>{
         if(error) return res.status(400).json({
             data:error
         })

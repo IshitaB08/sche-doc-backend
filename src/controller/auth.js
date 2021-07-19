@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const { validationResult}= require('express-validator');
 const { json } = require('body-parser');
 const jwt_decode = require("jwt-decode");
+const nodemailer = require('nodemailer'); 
 getTokenDetails = (req) => {
     var token = req.headers.authorization
     return jwt_decode(token);
@@ -67,6 +68,28 @@ exports.signup =(req,res)=>{
   });
   }
    if(data){
+    var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'youremail@gmail.com',
+          pass: 'yourpassword'
+        }
+      });
+      
+      var mailOptions = {
+        from: 'devic.bt.18@nitj.ac.in',
+        to: data.email,
+        subject: 'verification mail : ',
+        text: 'this is verification mail click the link below to verify your account'
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      }); 
     const token= jwt.sign({ _id : data._id, role:data.role}, process.env.JWT_SECRET, {expiresIn: '1h'});
        return res.status(201).json({
            massage: "User Created Successfully...!",
@@ -130,10 +153,10 @@ exports.getUserData =(req, res) => {
 }
 
 exports.completeprofile=(req,res)=>{
-    const { location, scope }= req.body;
+    const { location, scope, admintiming }= req.body;
  
     const userDetaild = getTokenDetails(req)
-        User.updateOne({_id: userDetaild._id} , { location:location, scope:scope } ).exec((error,data)=>{
+        User.updateOne({_id: userDetaild._id} , { location:location, scope:scope,admintiming:admintiming } ).exec((error,data)=>{
             if(error){
             return res.status(400).json({ error});}
             if(data){

@@ -30,6 +30,9 @@ default:'user'
         unique:true,
         trim:true,
     },
+    admintiming:{
+        type:String
+    },
     password:{
         type:String,
         required:true, 
