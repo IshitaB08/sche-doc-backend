@@ -31,7 +31,7 @@ default:'user'
         trim:true,
     },
     admintiming:{
-        type:String
+        type:Object
     },
     password:{
         type:String,
