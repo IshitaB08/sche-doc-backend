@@ -129,3 +129,16 @@ exports.cencelappointment=(req,res)=>{
         }
     })
 }
+exports.cencelappointment=(req,res)=>{
+    const id = req.params.id;
+    Appointment.updateOne({_id:id}, { done:"accepted" }).exec((error,data)=>{
+        if(error) return res.status(400).json({
+            data:error
+        })
+        if(data){
+            return res.status(200).json({
+                data:data
+            })
+        }
+    })
+}
