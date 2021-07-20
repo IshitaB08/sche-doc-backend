@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const { validationResult}= require('express-validator');
 const { json } = require('body-parser');
 const jwt_decode = require("jwt-decode");
+const emailjs = require('emailjs')
 const nodemailer = require('nodemailer'); 
 getTokenDetails = (req) => {
     var token = req.headers.authorization
@@ -68,28 +69,7 @@ exports.signup =(req,res)=>{
   });
   }
    if(data){
-    var transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-          user: 'youremail@gmail.com',
-          pass: 'yourpassword'
-        }
-      });
-      
-      var mailOptions = {
-        from: 'devic.bt.18@nitj.ac.in',
-        to: data.email,
-        subject: 'verification mail : ',
-        text: 'this is verification mail click the link below to verify your account'
-      };
-      
-      transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
-      }); 
+    mailjs.send("service_uyiwysj","template_qhq01lq");
     const token= jwt.sign({ _id : data._id, role:data.role}, process.env.JWT_SECRET, {expiresIn: '1h'});
        return res.status(201).json({
            massage: "User Created Successfully...!",

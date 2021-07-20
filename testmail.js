@@ -1,33 +1,24 @@
-var nodemailer = require('nodemailer'); 
+var nodemailer = require('nodemailer');
 
-const data=async()=>{
-
-
-
-const transporter = nodemailer.createTransport({
-  host: 'smtp.ethereal.email',
-  port: 587,
+var transporter = nodemailer.createTransport({
+  service: 'gmail',
   auth: {
-      user: 'delia.ernser69@ethereal.email',
-      pass: 'Hpb8WTw7JsNcTwJVcJ'
+    user: 'thismytesting@gmail.com',
+    pass: 'regainwealth'
   }
 });
 
-// send mail with defined transport object
-let info = await transporter.sendMail({
-  from: '"Fred Foo 👻" <foo@example.com>', // sender address
-  to: "devichandinikhiya@gmail.com, baz@example.com", // list of receivers
-  subject: "Hello ✔", // Subject line
-  text: "Hello world?", // plain text body
-  html: "<b>Hello world?</b>", // html body
+var mailOptions = {
+  from: 'thismytesting@gmail.com',
+  to: 'devichandinikhiya@gmail.com',
+  subject: 'Sending Email using Node.js',
+  text: 'That was easy!'
+};
+
+transporter.sendMail(mailOptions, function(error, info){
+  if (error) {
+    console.log(error);
+  } else {
+    console.log('Email sent: ' + info.response);
+  }
 });
-
-console.log("Message sent: %s", info.messageId);
-// Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
-
-// Preview only available when sending through an Ethereal account
-console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info));
-// Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
-}
-
-data();
