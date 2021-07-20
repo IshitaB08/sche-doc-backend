@@ -69,7 +69,7 @@ exports.signup =(req,res)=>{
   });
   }
    if(data){
-    mailjs.send("service_uyiwysj","template_qhq01lq");
+
     const token= jwt.sign({ _id : data._id, role:data.role}, process.env.JWT_SECRET, {expiresIn: '1h'});
        return res.status(201).json({
            massage: "User Created Successfully...!",
